@@ -1,0 +1,15 @@
+# Routes
+# This file defines all application routes (Higher priority routes first)
+# ~~~~
+
+# Home page
+GET         /                           	   	controllers.Application.index
+GET         /shows                      	   	controllers.Application.show
+POST        /shows/:id/watch            	   	controllers.Application.watch(id: Long)
+POST        /shows/:id/watchEpisode     	  	controllers.Application.watchEpisode(id: Long)
+POST		/shows/:id/setCalculator			controllers.Application.setEpisodeGenerator(id: Long)	
+
+# Map static resources from the /public folder to the /assets URL path
+GET         /assets/*file                  controllers.Assets.at(path="/public", file)
+
+    

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+	<head>
+		<meta charset="utf-8">
+		<meta name="description" content="Página para cadastro na disciplina de SI1">
+		<meta name="author" content="Júlio César Neves">
+		<meta name="keywords" content="SI1, curso">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+		<title>Sistemas de Informação I - Cadastro</title>
+		
+		<link rel="shortcut icon" href="/favicon.ico">
+		<link rel="stylesheet" href="css/bootstrap.min.css">
+		<link rel="stylesheet" href="css/styles.css">
+	</head>
+
+	<body>
+		<div class="container extrapaddingvertical">
+			<header>
+				<a href="index.html"><img src="imgs/headerimg.jpg" alt="Sistemas de Informação I" class="img-rounded img-responsive"></a>
+			</header>
+			
+			<h2 class="text-center extrapaddingvertical">Cadastro</h2>
+			
+			<form method="post" action="thanks.html" class="form-horizontal" role="form">
+				<div class="form-group">
+					<label for="nome" class="control-label col-md-4">Nome Completo:</label>
+					<div class="col-md-5 ">
+						<input type="text" class="form-control" name="nome" id="nome" placeholder="Insira seu nome" required>
+					</div>
+				</div> 
+				
+				<div class="form-group">
+					<label for="matricula" class="control-label col-md-4">Matrícula:</label>
+					<div class="col-md-5">
+						<input type="text" class="form-control" name="matricula" id="matricula" placeholder="Insira sua matrícula" required>
+					</div>
+				</div> 
+				
+				<div class="form-group">
+					<label for="email" class="control-label col-md-4">E-mail:</label>
+					<div class="col-md-5">
+						<input type="text" class="form-control" name="email" id="email" placeholder="Insira seu e-mail" required>
+					</div>
+				</div>
+				
+				<div class="form-group">
+					<label class="checkbox col-md-offset-4 extrapaddingleft">
+						<input type="checkbox" name="inscconjunta" id="inscconjunta" value="conj_subscribe"/>
+						Caso selecionado, desejo ser inscrito no grupo da disciplina
+					</label>
+				</div>
+				
+				<div class="form-group">
+					<label class="checkbox col-md-offset-4 extrapaddingleft">
+						<input type="checkbox" name="confirmacao" id="confirmacao" value="confirm" required="required"/>
+						Afirmo que as informações aqui apresentadas são verdadeiras
+					</label>
+				</div>
+				
+				<div class="col-md-offset-8">
+					<button type="submit" class="btn btn-primary" name="cadastro" id="cadastro">
+						Cadastrar
+					</button>
+				</div>
+			</form>
+		</div>
+		
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+		<script src="js/bootstrap.min.js"></script>
+	</body>
+</html>

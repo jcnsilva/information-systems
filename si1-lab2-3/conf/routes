@@ -1,0 +1,13 @@
+# Routes
+# This file defines all application routes (Higher priority routes first)
+# ~~~~
+
+# Home page
+GET     /                           controllers.Application.index()
+GET		/series						controllers.Application.series()
+GET		/minhasseries				controllers.Application.minhasSeries()
+POST	/series/add:id				controllers.Application.setAssistindo(id: Long)
+POST	/minhasseries/watch:id		controllers.Application.setEpisodioAssistido(id: Long)
+
+# Map static resources from the /public folder to the /assets URL path
+GET     /assets/*file               controllers.Assets.at(path="/public", file)

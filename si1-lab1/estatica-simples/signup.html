@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+	<head>
+		<meta charset="utf-8">
+		<meta name="description" content="Página para cadastro na disciplina de SI1">
+		<meta name="author" content="Júlio César Neves">
+		<meta name="keywords" content="SI1, curso">
+
+		<title>Sistemas de Informação I - Cadastro</title>
+		
+		<link rel="shortcut icon" href="/favicon.ico">
+	</head>
+
+	<body>
+		<h1>Sistemas de Informação I</h1>
+		<h2>Cadastro</h2>
+		<form method="post" action="thanks.html">
+			<label for="nome">Nome Completo</label>
+			<input type="text" name="nome" id="nome" placeholder="Insira seu nome" required="required"/>
+			<br>
+			<label for="matricula">Matrícula</label>
+			<input type="text" name="matricula" id="matricula" placeholder="Insira sua matrícula" required="required"/>
+			<br>
+			<label for="email">E-mail</label>
+			<input type="text" name="email" id="email" placeholder="Insira seu e-mail" required="required"/>
+			<br>
+			<input type="checkbox" name="inscconjunta" id="inscconjunta"/>
+			<label for="inscconjunta">Desejo me inscrever automaticamente no grupo da disciplina.</label>
+			<br>
+			<input type="checkbox" name="confirmacao" id="confirmacao" required="required"/>
+			<label for="confirmacao">Afirmo que as informações aqui apresentadas são verdadeiras.</label>
+			<br>
+			<input type="submit" name="cadastro" id="cadastro" value="Cadastrar" />
+		</form>
+	</body>
+</html>

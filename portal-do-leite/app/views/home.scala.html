@@ -1,0 +1,83 @@
+@(temas: List[Tema], dicas: List[Dica])
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+	<head>
+		<meta charset="utf-8">
+		<title class="center">Portal do Leite | Home</title>
+		<link rel="shortcut icon" href="@routes.Assets.at("imgs/icon.ico")" >
+		<link rel="stylesheet" href="@routes.Assets.at("stylesheets/bootstrap.min.css")" media="screen">
+		<link rel="stylesheet" href="@routes.Assets.at("stylesheets/main.css")" media="screen">
+		
+	</head>
+	<body>
+		<nav class="navbar navbar-default" role="navigation">
+			<div class="navbar-header">
+				<a class="navbar-brand" href="@routes.Application.index()">Portal do Leite</a>
+			</div>
+			<ul class="nav navbar-nav">
+				<li><a href="@routes.Auth.deslogar()">Deslogar</a></li>
+			</ul>
+		</nav>
+		
+		<div class="container">
+			<ul class="list-group" col-md-offset-3 col-md-6">
+			@for(tema <- temas){
+				<li class="list-group-item">
+					<a class="pull-left" href="@routes.Application.details(tema.getId())">@tema.getNome()</a>
+					<div class="pull-right">
+						Estatísticas de Dificuldade <br>
+					 	Média: @tema.getAvaliacaoMedia() Mediana: @tema.getAvaliacaoMediana() 
+					 </div>
+					 
+					 <div class="clearfix"></div>
+					 
+				</li>
+			}
+			</ul>
+						
+			<div>
+				<h3>Metadicas</h3>
+				
+				<button class="btn btn-danger btn-sm" id="addMetadica">Adicionar metadica</button>
+				
+				<div id="painelMetadicas">
+					<h4>Selecione as dicas para sua metadica</h4>
+					
+					<form method="post" action="@routes.Application.addMetadica()" role="form">
+						<select class="form-control form-group col-md-3" multiple name="selecionarDicas[]" id="selecionarDicas[]">
+							@for(dica <- dicas){
+								<option value="@dica.getId()">@dica.toString()</option>
+							}
+						</select>
+						<br>
+						<textarea class="form-control form-group" name="comentario" placeholder="Insira um comentário sobre a meta dica"></textarea>
+						<button class="btn btn-danger btn-sm">Ok</button>
+						
+					</form>				
+				</div>
+				
+				<ul class="list-group">
+						@for(dica <- dicas){
+							@if(dica.isMetadica()){
+								<li class="list-group-item">@dica.toString()</li>
+							}
+						}			
+				</ul>
+				
+			</div>
+		</div>
+		
+		<footer class="col-md-6 col-md-offset-3">
+			<p class="center">
+				Portal do Leite &copy; 2015 <br>
+				Desenvolvido por Júlio Neves e Tatiana Saturno
+			</p>
+		</footer>
+	</body>
+	
+	<script src="@routes.Assets.at("javascripts/jquery-1.11.2.min.js")"></script>
+	<script src="@routes.Assets.at("javascripts/page.js")"></script>
+	<script src="@routes.Assets.at("javascripts/bootstrap.min.js")"></script>
+	<!-- Sonar -->
+</html>

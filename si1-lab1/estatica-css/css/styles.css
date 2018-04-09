@@ -1,0 +1,58 @@
+a{
+	border:none;
+	text-decoration:none;
+	color:#000
+}
+a:link{}
+a:visited{}
+a:hover{
+	background-color:#4775A3;
+}
+header {
+	background-color:#4775A3;
+	margin-top:-10px;
+	height: 150px;
+}
+h1 {
+	text-align: center;
+	padding:50px 0;
+	font-family:"Times New Roman", Times, serif;
+	font-variant: small-caps;
+}
+h2{
+	font-variant: small-caps;
+}
+h3 {
+	padding:5px;
+	background-color: #4775A3;
+}
+.bold{
+	font-weight:bold;
+}
+.clear{
+	clear:both;
+}
+.rounded{
+	border-radius:10px;
+}
+.text-center{
+	text-align:center;
+}
+#nome, #matricula, #email{
+	border: 1px solid #4775A3;
+	float:right;
+}
+#cadastro{
+	background:#4775A3;
+	color:#000;
+	border: none;
+}
+#upper-form{
+	width: 400px;
+}
+#upper-form label{
+	float:left;
+}
+form{
+	margin: 0 400px;
+}

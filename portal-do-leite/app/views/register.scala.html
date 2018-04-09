@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Portal do Leite | Registrar</title>
+		
+		<link rel="shotcut icon" href="@routes.Assets.at("imgs/icon.ico")" >
+		<link rel="stylesheet" href="@routes.Assets.at("stylesheets/bootstrap.min.css")" media="screen">
+		<link rel="stylesheet" href="@routes.Assets.at("stylesheets/main.css")" media="screen">
+	</head>
+	<body>
+		<div class="container">
+			<header>
+				<h1 class="center"><a href="@routes.Application.index()">Portal do Leite</a></h1>
+			</header>
+			
+			<form method="post" role="form" action="@routes.Auth.registrar()">
+				<fieldset class="jumbotron col-md-4 col-md-offset-4">
+					<h4 class="center">Cadastre-se em nossa rede</h4>
+					<div class="form-group">
+						<input class="form-control" placeholder="Nome Completo" id="nome" name="nome" type="text"/>
+					</div>
+					<div class="form-group">
+						<input class="form-control" placeholder="Nome de Usuário" id="username" name="username" type="text"/>
+					</div>
+					<div class="form-group">
+						<input class="form-control" placeholder="Senha" id="senha" name="senha" type="password"/>
+					</div>
+					<div class="form-group">
+						<button class="btn btn-danger pull-left" id="cancelarRegistro" 
+								onclick="javascript: form.action='@routes.Application.login()';
+								form.method='get';">
+								Cancelar
+						</button>
+						<button class="btn btn-danger pull-right" id="registrar">Registrar</button>
+					</div>
+				</fieldset>
+				<div class="clearfix"></div>
+			</form>
+			
+			<footer class="col-md-6 col-md-offset-3">
+				<p class="center">
+					Portal do Leite &copy; 2015 <br>
+					Desenvolvido por Júlio Neves e Tatiana Saturno
+				</p>
+			</footer>
+			
+		</div>
+	</body>
+	
+	<script src="@routes.Assets.at("javascripts/jquery-1.11.2.min.js")"></script>
+	<script src="@routes.Assets.at("javascripts/page.js")"></script>
+	<script src="@routes.Assets.at("javascripts/bootstrap.min.js")"></script>
+</html>

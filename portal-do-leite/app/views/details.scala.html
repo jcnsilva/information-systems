@@ -1,0 +1,167 @@
+@(tema: Tema)
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+	<head>
+		<meta charset="utf-8">
+		<title class="center">Portal do Leite | @tema.getNome()</title>
+		<link rel="shortcut icon" href="@routes.Assets.at("imgs/icon.ico")" >
+		<link rel="stylesheet" href="@routes.Assets.at("stylesheets/bootstrap.min.css")" media="screen">
+		<link rel="stylesheet" href="@routes.Assets.at("stylesheets/main.css")" media="screen">
+	</head>
+	
+	<body>
+		<nav class="navbar navbar-default" role="navigation">
+			<div class="navbar-header">
+				<a class="navbar-brand" href="@routes.Application.index()">Portal do Leite</a>
+			</div>
+			<ul class="nav navbar-nav">
+				<li><a href="@routes.Auth.deslogar()">Deslogar</a></li>
+			</ul>
+		</nav>
+		<div class="container">
+			<div class="pull-left">
+				<h2>@tema.getNome()</h2>
+			</div>
+			
+			<div class="pull-right" id="estatisticas">
+				Estatísticas de Dificuldade <br>
+				Média: @tema.getAvaliacaoMedia() Mediana: @tema.getAvaliacaoMediana() 
+			</div>
+			
+			<div class="clearfix"></div>
+			
+			<div id="avaliacaoTema">
+				<h3>Avaliar Tema</h3>
+				<form method="post" action="@routes.Application.addAvaliacao(tema.getId())" role="form">
+					<select class="form-control form-group" id="avaliacao" name="avaliacao" title="Selecionar valor">
+						<option value="muitoFacil">Muito fácil</option>
+						<option value="facil">Fácil</option>
+						<option value="medio">Médio</option>
+						<option value="dificil">Difícil</option>
+						<option value="muitoDificil">Muito Difícil</option>
+					</select>
+					<button class="btn btn-danger">Ok</button>
+				</form>
+			</div>
+			
+			<div id="selTipoDica">
+				<h3>Adicionar dica</h3>
+				<select class="form-control form-group" id="tipoDica" name="tipoDica" title="Selecionar tipo">
+						<option value="dicaAssunto">Assuntos</option>
+						<option value="dicaDisciplina">Disciplinas</option>
+						<option value="dicaMaterial">Material Útil</option>
+						<option value="dicaConselho">Conselho</option>
+				</select>
+			</div>
+				
+			<div id="addDicaAssunto">
+				<h4>O que você precisa saber para não ter dificuldades?</h4>
+				<form method="post" role="form" action="@routes.Application.addDica(tema.getId(), "assunto")">
+					<input class="form-control form-group" name="assunto" type="text" placeholder="Nome do Assunto">
+					<button class="btn btn-danger">Finalizar</button>
+				</form>
+			</div>
+			
+			<div id="addDicaDisciplina">
+				<h4>Que disciplinas anteriores podem ajudar?</h4>
+				<form method="post" role="form" action="@routes.Application.addDica(tema.getId(), "disciplina")">
+					<input class="form-control form-group" name="disciplina" type="text" placeholder="Nome da Disciplina">
+					<textarea class="form-control form-group" name="razao" placeholder="Por que essa disciplina será útil?"></textarea>
+					<button class="btn btn-danger">Finalizar</button>
+				</form>
+			</div>
+			
+			<div id="addDicaMaterial">
+				<h4>Onde é possível encontrar material útil sobre esse assunto?</h4>
+				<form method="post" role="form" action="@routes.Application.addDica(tema.getId(), "linkMaterial")">
+					<input class="form-control form-group" name="linkMaterial" type="url" placeholder="Link para o material">
+					<button class="btn btn-danger">Finalizar</button>
+				</form>
+			</div>
+			
+			<div id="addDicaConselho">
+				<h4>Que conselho você daria a quem quer aprender esse assunto?</h4>
+				<form method="post" role="form" action="@routes.Application.addDica(tema.getId(), "conselho")">
+					<textarea class="form-control form-group" name="conselho" placeholder="Adicione seu conselho"></textarea>
+					<button class="btn btn-danger">Finalizar</button>
+				</form>
+			</div>
+			
+			<div id="dicas">
+				<h3>Dicas</h3>
+				<ul class="list-group">
+					@for(dica <- tema.getDicas()){
+						<li class="list-group-item">
+							<form method="post" action="@routes.Application.reportar(tema.getId(), dica.getId())" role="form">
+								<button class="btn btn-sm btn-danger pull-right"><span class="glyphicon glyphicon-remove"></span></button>
+							</form>
+							@dica.toString()
+							<br>
+							O índice de concordância dessa dica é @dica.getTaxaDeConcordancia()
+							<br>
+							
+							@if(dica.getTotalOpinioes() < 20) {
+								<form method="post" action="@routes.Application.addConcordancia(tema.getId(), dica.getId())" role="form">
+									<button class="btn btn-sm btn-success" id="botaoConcordar">
+										<span class="glyphicon glyphicon-thumbs-up"></span> @dica.getTotalConcordancias()
+									</button>
+								</form>
+								
+								<button class="btn btn-sm btn-danger" id="botaoDiscordar">
+									<span class="glyphicon glyphicon-thumbs-down"></span> @dica.getTotalDiscordancias()
+								</button>
+								
+								<form method="post" action="@routes.Application.addDiscordancia(tema.getId(), dica.getId())" role="form">
+									<div id="motivoDiscordancia">
+										<textarea class="form-control form-group" name="textoDiscordancia" placeholder="Por que você discorda dessa dica?" maxlength="100"></textarea>
+										<button class="btn btn-sm btn-danger" id="enviarDiscordancia">Enviar</button>
+									</div>
+								</form>
+								
+								<ul class="list-group">
+									@for(texto <- dica.getTextosDiscordancia()){
+										<li class="list-group-item">@texto</li>
+									}								
+								</ul>
+								
+							} else {
+							
+								<form method="post" action="@routes.Application.addConcordancia(tema.getId(), dica.getId())" role="form">
+									<button class="btn btn-sm btn-danger" id="botaoConcordar" disabled><span class="glyphicon glyphicon-thumbs-up"></span>@dica.getTotalConcordancias()</button>
+								</form>
+								
+								<button class="btn btn-sm btn-danger" id="botaoDiscordar" disabled><span class="glyphicon glyphicon-thumbs-down"></span>@dica.getTotalDiscordancias()</button>
+								<form method="post" action="@routes.Application.addDiscordancia(tema.getId(), dica.getId())" role="form">
+									<div id="motivoDiscordancia">
+										<textarea class="form-control form-group" name="textoDiscordancia" placeholder="Por que você discorda dessa dica?"></textarea>
+										<button id="enviarDiscordancia">Enviar</button>
+									</div>
+								</form>
+								
+								<ul class="list-group">
+									@for(texto <- dica.getTextosDiscordancia()){
+										<li class="list-group-item">@texto</li>
+									}								
+								</ul>
+								
+							}<!--Fim if-else-->
+						</li>
+					}
+				</ul>
+			</div>
+			
+			<footer class="col-md-6 col-md-offset-3">
+				<p class="center">
+					Portal do Leite &copy; 2015 <br>
+					Desenvolvido por Júlio Neves e Tatiana Saturno
+				</p>
+			</footer>
+		</div>
+	</body>
+	
+	<script src="@routes.Assets.at("javascripts/jquery-1.11.2.min.js")"></script>
+	<script src="@routes.Assets.at("javascripts/page.js")"></script>
+	<script src="@routes.Assets.at("javascripts/bootstrap.min.js")"></script>
+</html>
+			

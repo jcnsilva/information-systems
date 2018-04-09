@@ -1,0 +1,97 @@
+@(semanas: List[Semana])
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		
+		<title>Minhas Metas</title>
+		<!-- Bootstrap CSS -->
+		<link href="http://netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet" media="screen">
+	</head>
+	<body>
+		<div id="container">
+			<div class= "col-md-3 col-md-offset-5">
+				<h1>Minhas Metas</h1>
+				<h3>Adicionar Meta</h3>
+			</div>
+			<div class="col-md-10 col-md-offset-2">
+				<form action="@routes.Application.addMeta()" method="post" role="form" class="form-inline">
+					<label for="nome">Tarefa</label>
+					<input class="form-control" id="nome" name="nome" type="text" placeholder="Nome" required>
+					<label for="descricao">Descrição</label>
+					<input class="form-control" id="descricao" name="descricao" type="text" placeholder="Descrição da Meta">
+					
+					<label for="semana">Semana</label>
+					<select class="form-control" id="semana" name="semana">
+						@for(semana <- semanas){
+							<option value="@semana.getId()">@semana.intervalAsString()</option>
+						}
+					</select>
+					
+					<label for="prioridade">Prioridade</label>
+					<select class="form-control" id="prioridade" name="prioridade">
+						<option value="baixa">Baixa</option>
+						<option value="normal">Normal</option>
+						<option value="alta">Alta</option>
+					</select>
+					
+					<button class="btn btn-default">Adicionar</button>
+				</form>
+			</div>
+
+			<div class="col-md-2 col-md-offset-5">
+				<h3>Metas Atuais</h3>
+			</div>
+			
+			<div class="clearfix"></div>
+			@for(semana <- semanas){
+				@if(!semana.isEmpty()){
+				<h5><span class="pull-left">Semana @semana.intervalAsString()</span>
+				<span class="pull-right">Total de Metas: @semana.totalMetas() Alcançadas: @semana.totalMetasAlcancadas() Não Alcançadas: @semana.totalMetasNaoAlcancadas()</span></h5>
+				<table class="table table-hover">
+					<thead>
+						<th>Meta</th>
+						<th>Descrição</th>
+						<th>Prioridade</th>
+						<th></th>
+						<th></th>
+					</thead>
+					<tbody>
+						@for(meta <- semana.getMetas()){
+							
+							@if(meta.getAlcancada() == true){
+								<tr class="success">
+							} else {
+								<tr>
+							}
+							
+								<td>@meta.getNome()</td>
+								<td>@meta.getDescricao()</td>
+								<td>@meta.getPrioridade()</td>
+								<td>
+									<form action="@routes.Application.setAlcancada(meta.getId())" method="post">
+										<button class="btn btn-default">Alcançada<span class="glyphicon glyphicon-ok"></span></button>
+									</form>
+								</td>
+								<td>
+									<form action="@routes.Application.deleteMeta(semana.getId(), meta.getId())" method="post">
+										<button class="btn btn-default">Remover<span class="glyphicon glyphicon-trash"></span></button>
+									</form>
+								</td>
+							</tr>
+						}
+					</tbody>
+				</table>
+				}
+			}
+		</div>
+
+		<!-- jQuery -->
+		<script src="http://code.jquery.com/jquery.js"></script>
+		<!-- Bootstrap JavaScript -->
+		<script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+	</body>
+</html>
+
+

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+	<head>
+		<meta charset="utf-8">
+		<meta name="description" content="Página para cadastro na disciplina de SI1">
+		<meta name="author" content="Júlio César Neves">
+		<meta name="keywords" content="SI1, curso">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+		<title>Sistemas de Informação I - Obrigado</title>
+		
+		<link rel="shortcut icon" href="/favicon.ico">
+		<link rel="stylesheet" href="css/bootstrap.min.css">
+		<link rel="stylesheet" href="css/styles.css">
+	</head>
+
+	<body>
+		<div class="container extrapaddingvertical">
+			<header>
+				<a href="index.html"><img src="imgs/headerimg.jpg" alt="Sistemas de Informação I" class="img-rounded img-responsive"></a>
+			</header>
+			<h2 class="text-center extrapaddingvertical">Obrigado</h2>
+			
+			<div id="cadinterests">
+			<h4 class="text-center">Sua inscrição está sendo analisada. Conte-nos um pouco mais sobre seus interesses.</h4>
+				<form method="post" class="form-horizontal" role="form">
+					<div class="form-group  extrapaddingvertical">
+						<label for="addinterest" class="control-label col-md-4 ">Interesses</label>
+						<div class="col-md-4">
+							<input type="text" id="addinterest" class="form-control" placeholder="Adicione seus interesses">
+						</div>
+					</div>
+				
+					<div class="row">
+						
+						<div class="panel panel-primary col-md-3 col-md-offset-2 fixoverflow height210">
+							<div class="panel-heading text-center">
+								Quero aprender
+							</div>
+							<!-- Lista a ser alterada pelo jquery -->
+							<ul class="list-group" id="tolearn"></ul>
+						</div>
+											
+						<div class="panel panel-primary col-md-3 col-md-offset-2 fixoverflow height210">
+							<div class="panel-heading text-center">
+								Já sei
+							</div>
+							<!-- Lista a ser alterada pelo jquery -->
+							<ul class="list-group" id="learned"></ul>
+						</div>
+						
+					</div>
+					
+					<button class="btn btn-primary col-md-offset-9 col-md-1" id="send">Enviar</button>
+				</form>
+			</div>
+			
+			<div id="finalize" class="text-center">
+				<p>O formulário foi submetido</p>
+				<a href="index.html">Clique aqui para voltar para a página inicial</a>
+			</div>
+		</div>
+		
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+		<script src="js/bootstrap.min.js"></script>
+		<script src="js/script.js"></script>
+	</body>
+</html>

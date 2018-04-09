@@ -1,0 +1,24 @@
+# Routes
+# This file defines all application routes (Higher priority routes first)
+# ~~~~
+
+# Home page
+GET		/							controllers.Application.index()
+GET     /login                      controllers.Application.login()
+GET		/home						controllers.Application.home()
+GET		/details/:id				controllers.Application.details(id:Long)
+GET		/register					controllers.Application.register()
+POST	/addaval/:id				controllers.Application.addAvaliacao(id: Long)
+POST	/addMetadica				controllers.Application.addMetadica()
+POST	/adddica/:id/:tipo			controllers.Application.addDica(id: Long, tipo: String)
+POST	/addConcordancia/:idTema/:idDica	controllers.Application.addConcordancia(idTema: Long, idDica: Long)
+POST	/addDiscordancia/:idTema/:idDica	controllers.Application.addDiscordancia(idTema: Long, idDica: Long)
+POST	/report/:idTema/:idDica		controllers.Application.reportar(idTema: Long, idDica: Long)
+
+# Auth
+POST	/signin						controllers.Auth.logar()
+POST	/signup						controllers.Auth.registrar()
+GET		/signout					controllers.Auth.deslogar()
+
+# Map static resources from the /public folder to the /assets URL path
+GET     /assets/*file               controllers.Assets.at(path="/public", file)

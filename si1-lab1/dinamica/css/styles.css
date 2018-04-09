@@ -1,0 +1,24 @@
+.extrapaddingleft{
+	padding-left:35px;
+}
+.extrapaddingvertical{
+	padding-top:25px;
+	padding-bottom:25px;
+}
+.fixoverflow{
+	overflow-x: hidden;
+	overflow-y: scroll;
+	padding: 0;
+}
+.height210{
+	height: 210px;
+}
+.extramargin{
+	padding: 2px 10px 2px 10px;
+	margin: -1px 2px 0 2px;
+}
+.limitedwidth{
+	display: inline-block;
+	max-width: 150px;
+	overflow-x: hidden;
+}
